@@ -1,0 +1,4 @@
+interface:
+  display_name: "GDT Advertising Placement"
+  short_description: "Automate Tencent GDT campaign builds in Chuangliang"
+  default_prompt: "Use $gdt-advertising-placement to build a Tencent GDT campaign in Chuangliang following the approved SOP."
