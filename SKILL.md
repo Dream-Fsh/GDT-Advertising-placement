@@ -5,7 +5,7 @@ description: Build or review Tencent GDT campaigns in Chuangliang using the appr
 
 # GDT Advertising Placement
 
-Use this skill to build Tencent GDT ads in Chuangliang's batch-create flow. Follow the approved process in [references/gdt-advertising-sop.md](references/gdt-advertising-sop.md).
+Use this skill to build Tencent GDT ads in Chuangliang's batch-create flow. Keep the detailed SOP local; use the workflow and guardrails below as the reusable execution contract.
 
 ## Operating Boundary
 

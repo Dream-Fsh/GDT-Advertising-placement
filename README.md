@@ -11,7 +11,6 @@
 ## 项目内容
 
 - `SKILL.md`：skill 的触发条件、执行边界与核心操作规则。
-- `references/gdt-advertising-sop.md`：完整的广点通规范投放 SOP。
 - `agents/openai.yaml`：Codex 界面元数据。
 
 ## 使用方式
