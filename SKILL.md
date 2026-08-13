@@ -32,9 +32,10 @@ If a required resource varies by account, do not use a shared configuration. Con
 
 1. Import account IDs and select the matching account rows.
 2. Create the campaign, select the optimization goal before choosing the product, and validate any shared-product source-account prompt.
-3. Configure placements, conversion, bidding, schedule, naming, and targeting.
-4. Configure the component creative, brand image, button copy, materials, ad copy, and landing page.
-5. Generate the preview and validate every account before requesting confirmation for final submission.
+3. Configure placements, conversion, bidding, schedule, and naming.
+4. Configure targeting before opening or editing `创意信息`; targeting is a required prerequisite for the creative-information step.
+5. Configure the component creative, brand image, button copy, materials, ad copy, and landing page.
+6. Generate the preview and validate every account before requesting confirmation for final submission.
 
 ## Non-Negotiable Defaults
 
