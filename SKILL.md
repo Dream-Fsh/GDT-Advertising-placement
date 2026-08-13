@@ -45,6 +45,7 @@ If a required resource varies by account, do not use a shared configuration. Con
 - For materials, choose average allocation for both account and creative-group allocation; set creative-group material limit to `1`.
 - Add images from the global bulk-add menu, not an individual creative group.
 - Enter material selection through the empty-state `创意素材` section's visible `选择素材` text/link at the bottom of that panel. Do not infer the entry from a disabled card button or jump into an individual creative group.
+- In the material-library directory selector, search `快应用` and select the first returned directory, currently `网三-快应用`. The retired `广点通-通信素材` folder must not be used. If the exact first result is absent, stop and report the directory mismatch.
 - For copy, use all-account reuse, enable multi-copy testing, and select exactly two approved copy items.
 
 ## New-Ad Drawer Sequence
