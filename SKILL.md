@@ -63,6 +63,8 @@ For targeting templates, inspect the current list first. If the approved templat
 
 In `创意内容`, start with brand-image navigation before touching jump type, landing page, action button, materials, or copy. Set `品牌形象跳转` to `自定义` first; never retain the page-default `视频号`. Then search the brand image using the supplied entity keyword, select the first verified result when the SOP permits it, confirm the selection, and only then continue down the section.
 
+In the creative action-button section, explicitly open the `按钮文案` dropdown and set it to `立即领取`; an enabled action-button switch or a saved creative form is not proof that the copy was selected. If the page raises `请选择行动按钮文案`, stop and complete this selection before saving.
+
 ## Browser Automation Rules
 
 1. Wait for visible state changes after each selection, including selected counts, success notices, saved values, or enabled next-step controls.
