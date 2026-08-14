@@ -44,6 +44,7 @@ If a required resource varies by account, do not use a shared configuration. Con
 - Use the approved targeting template and selected brand-image rule.
 - For materials, choose average allocation for both account and creative-group allocation; set creative-group material limit to `1`.
 - For materials with no user-supplied material time range, open `自定义指标与时间` and select `近7天` for the metric data time. In the material library's upper filter area, clear `上传时间` by default; it is not configured from the material time input. Retain the approved default filters `花费 >= 1` and `目标转化量 >= 1` unless the user supplies replacements.
+- After confirming the material filters and before selecting materials, set the material-library pagination to `100条/页`. Wait for the filtered rows and page count to settle, then inspect the header checkbox and use it to select all rows in the current filtered result.
 - Add images from the global bulk-add menu, not an individual creative group.
 - Enter material selection through the empty-state `创意素材` section's visible `选择素材` text/link at the bottom of that panel. Do not infer the entry from a disabled card button or jump into an individual creative group.
 - In the material-library directory selector, search `快应用` and select the first returned directory, currently `网三-快应用`. The retired `广点通-通信素材` folder must not be used. If the exact first result is absent, stop and report the directory mismatch.
