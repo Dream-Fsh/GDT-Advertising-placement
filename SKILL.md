@@ -21,7 +21,7 @@ Collect or derive these items before starting:
 2. Product search keyword or product name.
 3. Brand-image keyword based on advertiser name.
 4. Targeting template.
-5. Material directory, date range, filter metrics, and thresholds. When the user does not provide a material upload-time range, use the rolling `近7天` range by default; do not block the run for this omission.
+5. Material directory, metric data-time range, filter metrics, and thresholds. When the user does not provide a material time range, use the rolling `近7天` range in `自定义指标与时间`; do not block the run for this omission. Do not treat this as the material library's `上传时间` filter.
 6. Exact ad copy.
 7. Account-to-landing-page mapping.
 8. Bid range and budget.
@@ -43,7 +43,7 @@ If a required resource varies by account, do not use a shared configuration. Con
 - Use API reporting, form-appointment conversion, and click attribution.
 - Use the approved targeting template and selected brand-image rule.
 - For materials, choose average allocation for both account and creative-group allocation; set creative-group material limit to `1`.
-- For materials with no user-supplied upload-time range, select `近7天`; retain the approved default filters `花费 >= 1` and `目标转化量 >= 1` unless the user supplies replacements.
+- For materials with no user-supplied material time range, open `自定义指标与时间` and select `近7天` for the metric data time; leave the material library's `上传时间` filter unchanged. Retain the approved default filters `花费 >= 1` and `目标转化量 >= 1` unless the user supplies replacements.
 - Add images from the global bulk-add menu, not an individual creative group.
 - Enter material selection through the empty-state `创意素材` section's visible `选择素材` text/link at the bottom of that panel. Do not infer the entry from a disabled card button or jump into an individual creative group.
 - In the material-library directory selector, search `快应用` and select the first returned directory, currently `网三-快应用`. The retired `广点通-通信素材` folder must not be used. If the exact first result is absent, stop and report the directory mismatch.
