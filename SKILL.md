@@ -93,6 +93,25 @@ Treat each module as a transaction: record the expected state before acting, per
 
 If a state gate fails, stop at that module. Do not compensate by clicking a later control, reopening another module, or carrying stale values forward.
 
+## Mandatory Continuation Ledger
+
+Do not treat a successfully saved module as a completed campaign. In particular, the `广告信息` state gate is the handoff to `定向模板`; it is never a terminal state.
+
+Keep this ordered ledger for every run and mark a row complete only after its state gate passes:
+
+1. Accounts imported and selected.
+2. Marketing content, product, placement, conversion, bid, schedule, status, and ad name saved to the main-table `广告信息` summary.
+3. Targeting template selected and the main table reports selected count `1`.
+4. Creative information saved, including custom brand-image jump, brand image, custom landing-page jump, and `立即领取`.
+5. Materials saved through both the library `提交` and outer material-panel `确定` actions.
+6. Multi-copy testing, all-account copy reuse, and both approved copy items saved.
+7. Landing-page mapping saved for every selected account.
+8. Preview generated and validated for every selected account.
+
+After any completed row, immediately begin the next incomplete row. The only valid pause points are: an explicit user pause/checkpoint, a failed state gate, a real account/resource exception, or the final-submit confirmation after preview. Never stop merely because a drawer closed, a main-table cell gained content, or a later `添加` / `编辑` control became enabled.
+
+Before declaring a run ready for preview, inspect the main table from top to bottom and prove that every required row in items 2-7 is populated. A blank or zero-selected `定向模板` row blocks creative, material, copy, landing-page, and preview completion; return to that row rather than reporting partial completion as success.
+
 ## Drawer Reset and Reconciliation Rule
 
 The Chuangliang new-ad drawer can reset dependent fields when `营销目的`, `推广产品`, or product allocation changes, and it can show a fresh default when reopened. Treat any such action as invalidating all later fields in the drawer.
