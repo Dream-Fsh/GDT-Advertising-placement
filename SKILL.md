@@ -47,6 +47,7 @@ If a required resource varies by account, do not use a shared configuration. Con
 - After confirming the material filters and before selecting materials, set the material-library pagination to `100条/页`. Wait for the filtered rows and page count to settle, then inspect the header checkbox and use it to select all rows in the current filtered result.
 - Do not confuse `自定义指标与时间：无数据` with an empty material library. When material rows and a total count are visible, materials exist even if metric columns such as spend and conversions are `0`. Continue the material flow: adjust pagination to `100条/页`, then apply the confirmed selection rule; report metric-data absence separately.
 - For account-specific landing pages, choose `按账户分配`, then click each account ID in the dialog's left-side account list. For the active account, search and check only its mapped landing page in the right-side table, verify the selected panel, and repeat for every account. Do not treat a filter dropdown as the account selector.
+- When the account-list DOM is duplicated, clipped, or has ambiguous text nodes, use OCR on the visible landing-page dialog to identify the requested account ID in the left account list. Use that OCR result only to narrow the semantic target: then locate the visible DOM row/container containing the exact ID, click that real webpage element, and verify that the active-account highlight or right-side table changes. OCR is not permission to coordinate-click a screenshot, force-click a hidden node, or select a similarly named account.
 - Add images from the global bulk-add menu, not an individual creative group.
 - Enter material selection through the empty-state `创意素材` section's visible `选择素材` text/link at the bottom of that panel. Do not infer the entry from a disabled card button or jump into an individual creative group.
 - In the material-library directory selector, search `快应用` and select the first returned directory, currently `网三-快应用`. The retired `广点通-通信素材` folder must not be used. If the exact first result is absent, stop and report the directory mismatch.
@@ -96,6 +97,16 @@ Treat each module as a transaction: record the expected state before acting, per
 | Copy / landing page | Main-table `创意文案` / `落地页` cells | Copy panel and landing-page dialog both close; selected panels contain the requested two copy items and account mapping | Do not infer selection from a search result |
 
 If a state gate fails, stop at that module. Do not compensate by clicking a later control, reopening another module, or carrying stale values forward.
+
+## OCR-Assisted Landing-Page Account Switch
+
+Use this fallback only after the normal left-list account-row locator has more than one match, resolves to a hidden node, or does not change the active account.
+
+1. Capture the visible landing-page dialog and OCR only the left account-list pane. Confirm the target numeric ID appears there exactly once; otherwise stop and report the ambiguity.
+2. Use the OCR text as a DOM constraint, not a click position: scope to the visible dialog and left account-list pane, find the exact text node, then ascend only to its visible, interactive row/container.
+3. Click the scoped webpage row once. Wait for a committed transition: the selected/active styling moves to that ID, or the right-side table, pagination, or search context refreshes for that ID.
+4. Re-read the active ID from the page DOM. Only then search and check that account's mapped landing page.
+5. If no visible interactive DOM row corresponds to the OCR result, stop for manual selection. Do not use screen coordinates, a generic duplicate text node, `force` clicks, or a hidden row.
 
 ## Mandatory Continuation Ledger
 
