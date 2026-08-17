@@ -58,7 +58,7 @@ If a required resource varies by account, do not use a shared configuration. Con
 After opening the new-ad drawer, configure visible sections strictly from top to bottom. Start with `营销内容`; do not jump directly to `广告版位`, conversion, or bidding.
 
 1. In `营销内容`, select and verify the marketing purpose.
-2. Continue within the same section in displayed order: promotion product, applicable product/goal selection, and product assignment. Where the version exposes `更多目标`, search and select the approved `表单预约` optimization goal. Then inspect the conversion list returned for the selected accounts: do not hardcode a conversion name such as `优投-表单预约`; when exactly one selectable conversion is returned, select that unique option and verify it corresponds to the chosen optimization goal.
+2. Continue within the same section in displayed order: promotion product, applicable product/goal selection, and product assignment. Where the version exposes `更多目标`, search and select the approved `表单预约` optimization goal. In the resulting `选择转化` panel, select `转化分配规则` = `全部相同` and wait until that rule is visibly committed **before** inspecting or checking any conversion name. Only then inspect the conversion list returned for the selected accounts: do not hardcode a conversion name such as `优投-表单预约`; when exactly one selectable conversion is returned, select that unique option and verify it corresponds to the chosen optimization goal.
 3. Only after the marketing-content section is complete, configure `广告版位`, then the lower sections in page order.
 4. Treat the initial `加粉互动 + 微信公众号 + 手动版位` state as an unconfigured page default. Do not save it.
 
@@ -89,7 +89,7 @@ Treat each module as a transaction: record the expected state before acting, per
 | Account import | Visible `选择媒体账户` dialog; header checkbox in `th.el-table-column--selection` | Requested IDs and visible row IDs are exact-set equal; selected rows and selected count equal request count | Batch-search toggle and Enter-created rows are non-retry-safe |
 | Product | Visible `选择推广产品` dialog; product name is the text of its `label.el-checkbox` excluding `查看详情` | Allocation is `全部相同`; warning IDs equal selected IDs; exact product is checked; dialog closes and `已选1个产品` appears | Refresh, pagination, and selection must be re-read before retry |
 | Placements | `广告版位` section, then `智能版位` and `稳步探索` controls | Only approved top-level groups are selected: `微信公众号与小程序`、`腾讯平台与内容媒体`、`腾讯营销联盟`; excluded groups are unchecked or not rendered | Reopen/reconfigure if product selection changes this section |
-| Conversion | `选择转化` panel and its `优化目标` input | Goal, API reporting, click attribution, allocation `全部相同`, one selected conversion, and visible `转化归因` are all present | Do not retry child-dialog confirmation until its closed/open state is known |
+| Conversion | `选择转化` panel and its `优化目标` input | In this order: goal, allocation `全部相同` visibly committed, then one selected conversion, API reporting, click attribution, and visible `转化归因` | Do not retry child-dialog confirmation until its closed/open state is known |
 | Ad settings | New-ad drawer `保存` button | Drawer closes; main table shows a non-empty ad-information summary; targeting action is enabled | Never advance after click-only confirmation |
 | Targeting | Main-table `定向模板` cell and its `添加` action | Exact template row is selected and main table reports selected count `1` | Search only when exact template is not already visible |
 | Creative | Main-table `创意信息` cell and `编辑` action | Saved panel closes; custom brand jump, selected brand image, custom landing-page jump, and `立即领取` are visible in saved state | Scope duplicate `自定义` labels to their section |
@@ -140,7 +140,7 @@ The Chuangliang new-ad drawer can reset dependent fields when `营销目的`, `�
 
 Use `表单预约` only when it is available under the current account set and is the approved input. Do not assume that `更多目标` exists: open the goal control, inspect its visible choices, use `更多目标` only when the control is actually present, and otherwise choose the only visible approved option.
 
-After the goal is applied, inspect the returned conversion rows. Select the sole eligible row that corresponds to the selected goal, not a literal conversion name. If zero or more than one eligible row remains, stop and report the names. Apply `全部相同` for conversion allocation for both one-account and multi-account runs unless the user explicitly supplies a per-account rule.
+After the goal is applied, configure conversion allocation first. Select `全部相同` for both one-account and multi-account runs unless the user explicitly supplies a per-account rule, then wait for the radio/button selected state or its committed allocation summary. Do not click, check, or otherwise select a conversion-name row until this proof exists. Next inspect the returned conversion rows and select the sole eligible row that corresponds to the selected goal, not a literal conversion name. If zero or more than one eligible row remains, stop and report the names. Finally verify both the committed `全部相同` allocation and the conversion checkbox state (`input.checked || label.is-checked`) before confirming the child dialog.
 
 ## Multi-Account Import DOM Contract
 
@@ -175,7 +175,7 @@ For the platform page agent, scope selectors to the smallest visible semantic co
 Known implementation checks:
 
 - The extension currently ships `#materialFolder` with a legacy default in `app.html`; the approved runtime directory is `快应用` and the first exact result `网三-快应用`. The UI default must be corrected or the run must reject the legacy value before page execution.
-- The conversion executor must not require the literal name `优投-表单预约`. Only the selected optimization goal is stable; after `表单预约` is applied, select and verify the sole available conversion option returned for the current account set. Any selector or validation that hard-codes a conversion name is a defect.
+- The conversion executor must not require the literal name `优投-表单预约`. Only the selected optimization goal is stable; after `表单预约` is applied, it must first select and verify conversion allocation `全部相同`, then select and verify the sole available conversion option returned for the current account set. Any executor path that checks a conversion-name row before allocation is visibly committed, or any selector/validation that hard-codes a conversion name, is a defect.
 - The targeting step must use the visible search input and exact-row selection, but may select the template directly only when the exact approved template is already visible. Search results alone are not proof of selection.
 - For material selection, the page agent must enter through the empty-state `创意素材` → `选择素材` action, then use the global `批量添加` menu. The outer material panel's `确定` is a second required confirmation after the library's `提交` closes.
 
